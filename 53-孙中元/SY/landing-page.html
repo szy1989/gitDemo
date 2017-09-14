@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/denglu.css" />
+	</head>
+	<body>
+		<div id="head">
+			<div id="head-l">
+				<img src="img/logo.png" />
+				<span>中关村在线旗下网上商城</span>
+			</div>
+			<div id="head-r">
+				<p>还没有ZOL商城账户?<span><a href="http://127.0.0.1:8020/53-孙中元/SY/registration-page.html?">立即注册</a></span></p>
+			</div>
+		</div>
+		<div id="main">
+			<div id="main-l">
+				<a href="#"><img src="img/dl1.png" /></a>
+			</div>
+			<div id="main-r">
+				<div id="main-r-m">
+					<p><span>登录ZOL商城</span>
+						<span>
+							<img src="img/dl2.png" />
+							手机动态码登录
+						</span>
+					</p>
+					<input type="text" id="txt" value="手机/邮箱/用户名"/></br>
+					<input type="text" id="txt1" value="密码"/>
+					<p id="main-r-m-p"><a href="#">忘记密码?</a></p>
+					<input type="button" id="btn" value="登 录" />
+					<img src="img/dl3.png"  id="imgs"/>
+				</div>
+			</div>
+		</div>
+		<div id="foot">
+			<div id="foot-m">
+				<ul>
+					<li><a href="#">关于ZOL商城</a></li>
+					<li><a href="#">联系我们</a></li>
+					<li><a href="#">帮助中心</a></li>
+				</ul>
+				<span>&copy;2015. 中关村在线  版权所有</span>
+			</div>
+		</div>
+		<script>
+			function $(id){
+				return document.getElementById(id)
+			}
+			$("txt").onfocus=function(){
+				$("txt").value="";
+			}
+			$("txt1").onfocus=function(){
+				$("txt1").value="";
+			}
+			$("btn").onclick=function(){
+				var flag=false;
+				var flag1=false;
+				var str=document.cookie;
+				var arr=str.split("; ");
+				for(var i=0; i<arr.length; i++){
+					var brr=arr[i].split("=");
+					if(brr[0]=="uname" &&brr[1]==$("txt").value){
+						flag=true;
+					}
+					if(brr[0]=="upwd" &&brr[1]==$("txt1").value){
+						flag1=true;
+					}
+				}
+				if(flag &&flag1){
+					location.href="http://127.0.0.1:8020/53-孙中元/SY/home-page.html?";
+				}else if(!flag &&flag1){
+					alert("账户名错误")
+				}else if(flag && !flag1){
+					alert("密码错误")
+				}else{
+					alert("用户名和密码错误")
+				}
+			}
+		</script>
+	</body>
+</html>
