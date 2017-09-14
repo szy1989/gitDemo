@@ -5,7 +5,6 @@
 		<title></title>
 		<link rel="stylesheet" href="css/public.css" />
 		<link rel="stylesheet" href="css/pro-li.css" />
-		<script src="js/jquery.min.js"></script>
 		<script src="js/cookie.js"></script>
 	</head>
 	<body>
@@ -488,7 +487,7 @@ function foo(){
 		}else{
 			ajax=new ActiveObject("Microsoft.XMLHTTP");
 		}
-		ajax.open("get","http://127.0.0.1:8020/53-孙中元/SY/json/pro-li.json");
+		ajax.open("get","http://127.0.0.1:8020/SY/json/pro-li.json");
 		ajax.send();
 		ajax.onreadystatechange=function(){
 			if(ajax.readyState==4 && ajax.status == 200){
@@ -525,15 +524,33 @@ function foo(){
 						var arr = [];
 						var flag = true;
 						var _json = {
-							"id":this.nextElementSibling.id,
-							"name":this.nextElementSibling.name,
-							"src":this.nextElementSibling.src,
-							"price":this.nextElementSibling.price,
+							"id":this.nextElementSibling.getAttribute('data-id'),
+							"name":this.nextElementSibling.getAttribute('data-name'),
+							"src":this.nextElementSibling.getAttribute('data-src'),
+							"price":this.nextElementSibling.getAttribute('data-price'),
 							"count":1
 						}
-						arr.push(_json);
-						console.log(this.nextElementSibling)
-						console.log(this.nextElementSibling.id)
+						var cookieInfo = getCookie("shoplist");
+						if( cookieInfo.length != 0 ){
+							arr = cookieInfo;
+							for(var i in arr){
+								if(_json.id == arr[i].id && _json.name == arr[i].name){
+									arr[i].count++;
+									flag = false;
+									break;
+								}
+							}
+						}
+						if(flag){
+							arr.push(_json);
+						}
+						setCookie("shoplist",JSON.stringify(arr));
+						var f = confirm("是否继续购买?确定--继续购买，取消---去购物车结算");
+						if( !f ){
+							location.href = "shopcar.html";
+						}
+						console.log( document.cookie );
+
 					}
 				}
 			}
