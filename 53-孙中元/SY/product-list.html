@@ -20,8 +20,8 @@
 			</ul>
 			<ul id="footer-ur">
 				<li>
-					请<span><a href="http://127.0.0.1:8020/53-孙中元/SY/landing-page.html?">登录</a></span>
-					<span><a href="http://127.0.0.1:8020/53-孙中元/SY/registration-page.html?">免费注册</a></span>
+					请<span><a href="landing-page.html?">登录</a></span>
+					<span><a href="registration-page.html?">免费注册</a></span>
 				</li>
 				<li>买家中心</li>
 				<li><a href="#">购物车(<span>0</span>)</a></li>
@@ -487,7 +487,7 @@ function foo(){
 		}else{
 			ajax=new ActiveObject("Microsoft.XMLHTTP");
 		}
-		ajax.open("get","http://127.0.0.1:8020/SY/json/pro-li.json");
+		ajax.open("get","json/pro-li.json");
 		ajax.send();
 		ajax.onreadystatechange=function(){
 			if(ajax.readyState==4 && ajax.status == 200){
